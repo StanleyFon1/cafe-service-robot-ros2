@@ -1,0 +1,16 @@
+# ROS 2 build artifacts (live in ros2_ws/build|install|log, not here)
+build/
+install/
+log/
+
+# SolidWorks exporter log
+export.log
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Editor files
+.vscode/
+*.swp
+*~
