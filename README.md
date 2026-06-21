@@ -23,27 +23,23 @@ source install/setup.bash
 
 ## Launch
 
-### Step 1 — Start Gazebo (headless)
+### Step 1 — Start Gazebo
 
 ```bash
 ros2 launch serv_robot gazebo.launch.py
 ```
 
-### Step 2 — Spawn the robot (run after Gazebo is ready)
-
-```bash
-ros2 run gazebo_ros spawn_entity.py \
-  -entity serv_robot \
-  -topic /robot_description \
-  -x 0 -y -5 -z 0.05 -Y 0
-```
-
-Confirm the robot is live:
+The robot spawns automatically after 15 seconds. Confirm it is live before proceeding:
 ```bash
 ros2 topic hz /scan   # should show ~5 Hz
 ```
 
-### Step 3 — Start Nav2 (uses pre-built map)
+> **Slow machine?** If the spawn fails (exit code 1 in the terminal), run it manually:
+> ```bash
+> ros2 run gazebo_ros spawn_entity.py -entity serv_robot -topic /robot_description -x 0 -y -5 -z 0.05 -Y 0
+> ```
+
+### Step 2 — Start Nav2 (uses pre-built map)
 
 ```bash
 ros2 launch serv_robot nav2.launch.py

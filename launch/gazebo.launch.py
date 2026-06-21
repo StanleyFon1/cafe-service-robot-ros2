@@ -1,7 +1,7 @@
 import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription, SetEnvironmentVariable
+from launch.actions import IncludeLaunchDescription, SetEnvironmentVariable, TimerAction
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
 
@@ -32,5 +32,22 @@ def generate_launch_description():
             name='robot_state_publisher',
             parameters=[{'robot_description': robot_description,
                          'use_sim_time': True}],
+        ),
+        TimerAction(
+            period=15.0,
+            actions=[
+                Node(
+                    package='gazebo_ros',
+                    executable='spawn_entity.py',
+                    name='spawn_entity',
+                    arguments=[
+                        '-entity', 'serv_robot',
+                        '-topic', '/robot_description',
+                        '-x', '0', '-y', '-5', '-z', '0.05',
+                        '-Y', '0',
+                    ],
+                    output='screen',
+                ),
+            ],
         ),
     ])
