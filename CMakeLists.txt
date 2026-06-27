@@ -3,7 +3,7 @@ project(serv_robot)
 
 find_package(ament_cmake REQUIRED)
 
-install(DIRECTORY config launch maps meshes textures urdf worlds
+install(DIRECTORY config launch maps meshes urdf worlds
   DESTINATION share/${PROJECT_NAME}
   )
   

@@ -43,7 +43,7 @@ def generate_launch_description():
                     arguments=[
                         '-entity', 'serv_robot',
                         '-topic', '/robot_description',
-                        '-x', '0', '-y', '-5', '-z', '0.05',
+                        '-x', '1.75', '-y', '-11.0', '-z', '0.05',
                         '-Y', '0',
                     ],
                     output='screen',
