@@ -1,4 +1,4 @@
-# serv_robot — Autonomous Café Service Robot
+# serv_robot, Autonomous Café Service Robot
 
 ![ROS 2](https://img.shields.io/badge/ROS_2-Humble-22314E?logo=ros&logoColor=white)
 ![Gazebo](https://img.shields.io/badge/Gazebo-Classic_11-FF7300)
@@ -17,10 +17,10 @@ A **ROS 2 Humble + Gazebo Classic 11** simulation of a differential-drive servic
 ## Features
 
 - **Differential-drive robot** modelled in SolidWorks and exported to URDF with Gazebo plugins.
-- **Custom café world** — enclosed room with tables, chairs, and a service counter.
+- **Custom café world**, enclosed room with tables, chairs, and a service counter.
 - **SLAM mapping** with `slam_toolbox` and a saved occupancy grid.
-- **Autonomous navigation** — AMCL localization, A\* global planning, and the DWB local controller over layered costmaps.
-- **Semantic delivery goals** — drive to named tables via RViz or an automated mission node.
+- **Autonomous navigation**, AMCL localization, A\* global planning, and the DWB local controller over layered costmaps.
+- **Semantic delivery goals**, drive to named tables via RViz or an automated mission node.
 
 ## Tech stack
 
@@ -56,7 +56,7 @@ source install/setup.bash
 
 ## Running the Simulation
 
-### Step 1 — Start Gazebo
+### Step 1: Start Gazebo
 
 ```bash
 ros2 launch serv_robot gazebo.launch.py
@@ -75,13 +75,13 @@ ros2 topic hz /scan   # should report ~5 Hz
 >   -x 0 -y -5 -z 0.05 -Y 0
 > ```
 
-### Step 2 — Start Nav2 (uses the pre-built map)
+### Step 2: Start Nav2 (uses the pre-built map)
 
 ```bash
 ros2 launch serv_robot nav2.launch.py
 ```
 
-### Step 3 — Visualise in RViz
+### Step 3: Visualise in RViz
 
 ```bash
 ros2 run rviz2 rviz2 --display-config \
@@ -90,7 +90,7 @@ ros2 run rviz2 rviz2 --display-config \
 
 The configuration loads automatically with the correct Fixed Frame (`map`), Map (Transient Local QoS), LaserScan, RobotModel, and global path display pre-configured. The laser scan aligns with the map walls automatically, since AMCL auto-initialises at the spawn position.
 
-### Step 4 — Send a navigation goal
+### Step 4: Send a navigation goal
 
 In the RViz toolbar, click **2D Nav Goal**, click a point on the open floor, and drag to set the heading. Use the table coordinates below as delivery targets.
 
@@ -120,17 +120,17 @@ python3 delivery_node.py
 Only required if the café layout changes.
 
 ```bash
-# Terminal 1 — Gazebo + robot (Steps 1 & 2 above)
+# Terminal 1: Gazebo + robot (Steps 1 & 2 above)
 
-# Terminal 2 — SLAM
+# Terminal 2: SLAM
 ros2 launch slam_toolbox online_async_launch.py \
   slam_params_file:=$HOME/serv_bot/config/slam_params.yaml \
   use_sim_time:=true
 
-# Terminal 3 — Drive the café manually
+# Terminal 3: Drive the café manually
 ros2 run teleop_twist_keyboard teleop_twist_keyboard
 
-# Terminal 4 — Save the map when coverage is complete
+# Terminal 4: Save the map when coverage is complete
 ros2 run nav2_map_server map_saver_cli \
   -f $HOME/serv_bot/maps/cafe_map
 ```
@@ -177,7 +177,7 @@ ros2 run nav2_map_server map_saver_cli \
 
 ## Team
 
-**Team Bumblebee** — Deggendorf Institute of Technology (DIT/THD)
+**Team Bumblebee**: Deggendorf Institute of Technology (DIT/THD)
 
 - Stanley Fon
 - Lara Ipek
